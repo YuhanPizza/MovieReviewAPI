@@ -1,4 +1,5 @@
-﻿{
+﻿//settings when app launches
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
