@@ -2,7 +2,10 @@
 //where we wire in functionalities
 using Microsoft.EntityFrameworkCore;
 using MovieReviewApp.Data;
+using MovieReviewApp.Interfaces;
+using MovieReviewApp.Repository;
 using PokemonReviewApp;
+//isntall entity framework tools from nugetmanager to use Add-Migration command on package manager
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckley
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options =>
@@ -21,7 +25,9 @@ builder.Services.AddDbContext<DataContext>(options =>
 var app = builder.Build();
 
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
+{
 	SeedData(app);
+}
 
 void SeedData(IHost app)
 {
