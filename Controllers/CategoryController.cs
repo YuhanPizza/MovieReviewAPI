@@ -27,7 +27,6 @@ namespace MovieReviewApp.Controllers
 		public IActionResult GetCategories()
 		{
 			var categories = _mapper.Map<List<CategoryDto>>(_categoryRepository.GetCategories());
-			//}
 
 			if (!ModelState.IsValid)
 			{
