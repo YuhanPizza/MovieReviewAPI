@@ -64,5 +64,39 @@ namespace MovieReviewApp.Controllers
 			}
 			return Ok(country);
 		}
+		[HttpPost]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		public IActionResult CreateCountry([FromBody] CountryDto countryCreate)
+		{
+			if (countryCreate == null) 
+			{
+				return BadRequest(ModelState);
+			}
+			var country = _countryRepository.GetCountries()
+				.Where(c => c.Name.Trim().ToUpper() == countryCreate.Name.TrimEnd().ToUpper())
+				.FirstOrDefault();
+
+			//Error Handling
+			if(country != null)
+			{
+				ModelState.AddModelError("", "Country Already Exists");
+				return StatusCode(422, ModelState);
+			}
+			if(!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var countryMap = _mapper.Map<Country>(countryCreate);
+
+			if (!_countryRepository.CreateCountry(countryMap))
+			{
+				ModelState.AddModelError("", "Something went wrong during save");
+				return StatusCode(500, ModelState);
+			}
+			
+			return Ok("Successfully created!");
+		}
 	}
 }

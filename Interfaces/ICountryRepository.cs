@@ -9,5 +9,7 @@ namespace MovieReviewApp.Interfaces
 		Country GetCountryByDistributer(int distributerId);
 		ICollection <Distributer> GetDistributersFromACountry(int id);
 		bool CountryExists(int id);
+		bool CreateCountry(Country country);
+		bool Save();
 	}
 }
