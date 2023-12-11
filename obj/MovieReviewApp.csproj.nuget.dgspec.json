@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\loren\\OneDrive\\Desktop\\WebAPI\\MovieReviewApp\\MovieReviewApp.csproj": {}
+    "C:\\Users\\loren\\Desktop\\WebAPI\\MovieReviewApp\\MovieReviewApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\loren\\OneDrive\\Desktop\\WebAPI\\MovieReviewApp\\MovieReviewApp.csproj": {
+    "C:\\Users\\loren\\Desktop\\WebAPI\\MovieReviewApp\\MovieReviewApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\loren\\OneDrive\\Desktop\\WebAPI\\MovieReviewApp\\MovieReviewApp.csproj",
+        "projectUniqueName": "C:\\Users\\loren\\Desktop\\WebAPI\\MovieReviewApp\\MovieReviewApp.csproj",
         "projectName": "MovieReviewApp",
-        "projectPath": "C:\\Users\\loren\\OneDrive\\Desktop\\WebAPI\\MovieReviewApp\\MovieReviewApp.csproj",
+        "projectPath": "C:\\Users\\loren\\Desktop\\WebAPI\\MovieReviewApp\\MovieReviewApp.csproj",
         "packagesPath": "C:\\Users\\loren\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\loren\\OneDrive\\Desktop\\WebAPI\\MovieReviewApp\\obj\\",
+        "outputPath": "C:\\Users\\loren\\Desktop\\WebAPI\\MovieReviewApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\loren\\AppData\\Roaming\\NuGet\\NuGet.Config",

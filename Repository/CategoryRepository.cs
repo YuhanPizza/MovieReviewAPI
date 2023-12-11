@@ -16,6 +16,19 @@ namespace MovieReviewApp.Repository
 			return _context.Categories.Any(c => c.Id == id);
 		}
 
+		public bool CreateCategory(Category category)
+		{
+			// Change Tracker
+			// tracks: Adding, Updating, Modifyng
+			// state can be connected/ disconnected
+			// EntityState.Added
+
+			_context.Add(category);
+			//var result = _context.SaveChanges();
+			// return result > 0 ? true: false;
+			return Save();
+		}
+
 		public ICollection<Category> GetCategories()
 		{
 			return _context.Categories.OrderBy(c => c.Name).ToList();
@@ -29,6 +42,15 @@ namespace MovieReviewApp.Repository
 		public ICollection<Movie> GetMovieByCategory(int id)
 		{
 			return _context.MovieCategories.Where( mc => mc.CategoryId == id).Select( c => c.Movie).ToList();
+		}
+
+		public bool Save()
+		{
+			//savechanges: 
+			// turns it into sql and 
+			// creating it in the database
+			var result = _context.SaveChanges();
+			return result > 0 ? true: false;
 		}
 	}
 }
