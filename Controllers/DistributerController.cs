@@ -13,12 +13,14 @@ namespace MovieReviewApp.Controllers
 	public class DistributerController : Controller
 	{
 		private readonly IDistributerRepository _distributerRepository;
+		private readonly ICountryRepository _countryRepository;
 		private readonly DataContext _context;
 		private readonly IMapper _mapper;
 
-		public DistributerController(IDistributerRepository distributerRepository, DataContext context, IMapper mapper)
+		public DistributerController(IDistributerRepository distributerRepository,ICountryRepository countryRepository, DataContext context, IMapper mapper)
 		{
 			_distributerRepository = distributerRepository;
+			_countryRepository = countryRepository;
 			_context = context;
 			_mapper = mapper;
 		}
@@ -65,6 +67,43 @@ namespace MovieReviewApp.Controllers
 				return BadRequest(ModelState);
 			}
 			return Ok(movies);
+		}
+
+		[HttpPost]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		public IActionResult CreateDistributer([FromQuery] int countryId, [FromBody] DistributerDto distributerCreate)
+		{
+			if (distributerCreate == null)
+			{
+				return BadRequest(ModelState);
+			}
+			var distributer = _distributerRepository.GetDistributers()
+				.Where(d => d.Company.Trim().ToUpper() == distributerCreate.Company.TrimEnd().ToUpper())
+				.FirstOrDefault();
+
+			//Error Handling
+			if (distributer != null)
+			{
+				ModelState.AddModelError("", "Distributer Already Exists");
+				return StatusCode(422, ModelState);
+			}
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var distributerMap = _mapper.Map<Distributer>(distributerCreate);
+
+			distributerMap.Country = _countryRepository.GetCountry(countryId);
+
+			if (!_distributerRepository.CreateDistributer(distributerMap))
+			{
+				ModelState.AddModelError("", "Something went wrong during save");
+				return StatusCode(500, ModelState);
+			}
+
+			return Ok("Successfully created!");
 		}
 	}
 }

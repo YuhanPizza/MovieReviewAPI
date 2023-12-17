@@ -14,7 +14,8 @@ namespace MovieReviewApp.Helper
 			CreateMap<Country, CountryDto>();
 			CreateMap<CountryDto, Country>();
 			CreateMap<Distributer,DistributerDto>();
-            CreateMap<Review, ReviewDto>();
+			CreateMap<DistributerDto, Distributer>();
+			CreateMap<Review, ReviewDto>();
             CreateMap<Reviewer, ReviewerDto>();
         }
     }

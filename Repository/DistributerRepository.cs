@@ -1,4 +1,5 @@
-﻿using MovieReviewApp.Data;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using MovieReviewApp.Data;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Models;
 
@@ -35,5 +36,18 @@ namespace MovieReviewApp.Repository
 		{
 			return _context.Movies.Where(m => m.Distributer.Id == distributerId).ToList();
 		}
+
+		public bool CreateDistributer(Distributer distributer)
+		{
+			_context.Add(distributer);
+			return Save();
+		}
+
+		public bool Save()
+		{
+			var result = _context.SaveChanges();
+			return result > 0 ? true : false;
+		}
+
 	}
 }

@@ -9,5 +9,7 @@ namespace MovieReviewApp.Interfaces
 		Distributer GetDistributerOfAMovie(int moveId);
 		public ICollection<Movie> GetMovieByDistributer(int distributerId);
 		bool DistributerExists(int distributerId);
+		bool CreateDistributer(Distributer distributer);
+		bool Save();
 	}
 }
