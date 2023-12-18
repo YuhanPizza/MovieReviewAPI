@@ -4,6 +4,7 @@ using MovieReviewApp.Data;
 using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Models;
+using MovieReviewApp.Repository;
 
 namespace MovieReviewApp.Controllers
 {
@@ -88,6 +89,41 @@ namespace MovieReviewApp.Controllers
 				return BadRequest(ModelState);
 			}
 			return Ok(rating);
+		}
+
+		[HttpPost]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		public IActionResult CreateMovie([FromQuery] int distributerId,[FromQuery] int categoryId,[FromBody] MovieDto movieCreate)
+		{
+			if (movieCreate == null)
+			{
+				return BadRequest(ModelState);
+			}
+			var movie = _moviesRepository.GetMovies()
+				.Where(c => c.Title.Trim().ToUpper() == movieCreate.Title.TrimEnd().ToUpper())
+				.FirstOrDefault();
+
+			//Error Handling
+			if (movie != null)
+			{
+				ModelState.AddModelError("", "Movie Already Exists");
+				return StatusCode(422, ModelState);
+			}
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			var movieMap = _mapper.Map<Movie>(movieCreate);
+
+			if (!_moviesRepository.CreateMovie(distributerId,categoryId, movieMap))
+			{
+				ModelState.AddModelError("", "Something went wrong during save");
+				return StatusCode(500, ModelState);
+			}
+
+			return Ok("Successfully created!");
 		}
 	}
 }

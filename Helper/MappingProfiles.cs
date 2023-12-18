@@ -9,7 +9,8 @@ namespace MovieReviewApp.Helper
         public MappingProfiles()
         {
             CreateMap<Movie, MovieDto>();
-            CreateMap<Category, CategoryDto>();
+			CreateMap<MovieDto, Movie>();
+			CreateMap<Category, CategoryDto>();
 			CreateMap<CategoryDto, Category>();
 			CreateMap<Country, CountryDto>();
 			CreateMap<CountryDto, Country>();

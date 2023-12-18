@@ -13,6 +13,24 @@ namespace MovieReviewApp.Repository
 			_context = context;
 		}
 
+		public bool CreateMovie(int distributerId, int categoryId, Movie movie)
+		{
+			var category = _context.Categories.Where(a => a.Id == categoryId).FirstOrDefault();
+		    movie.Distributer = _context.Distributers.Where(d => d.Id ==  distributerId).FirstOrDefault(); //many to one relationship many movies to one distributer.
+
+			var movieCategory = new MovieCategory()
+			{
+				Category = category,
+				Movie = movie,
+			};
+
+			_context.Add(movieCategory);
+
+			_context.Add(movie);
+
+			return Save();
+		}
+
 		public Movie GetMovie(int id)
 		{
 			return _context.Movies.Where(m => m.Id == id).FirstOrDefault();
@@ -41,6 +59,12 @@ namespace MovieReviewApp.Repository
 		public bool MovieExists(int movieId)
 		{
 			return _context.Movies.Any(m => m.Id == movieId);
+		}
+
+		public bool Save()
+		{
+			var result = _context.SaveChanges();
+			return result > 0 ? true : false;
 		}
 	}
 }
