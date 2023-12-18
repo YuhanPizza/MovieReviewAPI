@@ -17,7 +17,8 @@ namespace MovieReviewApp.Helper
 			CreateMap<Distributer,DistributerDto>();
 			CreateMap<DistributerDto, Distributer>();
 			CreateMap<Review, ReviewDto>();
-            CreateMap<Reviewer, ReviewerDto>();
+			CreateMap<ReviewDto, Review>();
+			CreateMap<Reviewer, ReviewerDto>();
         }
     }
 }

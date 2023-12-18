@@ -12,7 +12,16 @@ namespace MovieReviewApp.Repository
         {
 			_context = context;
 		}
-        public Review GetReview(int id)
+
+		public bool CreateReview(int reviwerId, int movieId, Review review)
+		{
+			review.Movie = _context.Movies.Where(m => m.Id == movieId).FirstOrDefault(); 
+			review.Reviewer = _context.Reviewers.Where(r => r.Id == reviwerId).FirstOrDefault();
+			_context.Add(review);
+			return Save();
+		}
+
+		public Review GetReview(int id)
 		{
 			return _context.Reviews.Where(r => r.Id == id).FirstOrDefault();
 		}
@@ -30,6 +39,12 @@ namespace MovieReviewApp.Repository
 		public bool ReviewExists(int reviewId)
 		{
 			return _context.Reviews.Any(r => r.Id == reviewId);
+		}
+
+		public bool Save()
+		{
+			var result = _context.SaveChanges();
+			return result > 0 ? true : false;
 		}
 	}
 }
