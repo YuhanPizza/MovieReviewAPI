@@ -16,7 +16,7 @@ namespace MovieReviewApp.Controllers
 		private IMapper _mapper;
 		private DataContext _context;
 
-        public ReviewController(IReviewRepository reviewRepository,IMapper mapper, DataContext context)
+        public ReviewController(IReviewRepository reviewRepository,IMapper mapper,IMoviesRepository moviesRepository,  DataContext context)
         {
 			_reviewRepository = reviewRepository;
 			_mapper = mapper;
