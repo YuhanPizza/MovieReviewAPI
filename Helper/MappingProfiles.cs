@@ -10,14 +10,19 @@ namespace MovieReviewApp.Helper
         {
             CreateMap<Movie, MovieDto>();
 			CreateMap<MovieDto, Movie>();
+
 			CreateMap<Category, CategoryDto>();
 			CreateMap<CategoryDto, Category>();
+
 			CreateMap<Country, CountryDto>();
 			CreateMap<CountryDto, Country>();
+
 			CreateMap<Distributer,DistributerDto>();
 			CreateMap<DistributerDto, Distributer>();
+
 			CreateMap<Review, ReviewDto>();
 			CreateMap<ReviewDto, Review>();
+
 			CreateMap<Reviewer, ReviewerDto>();
 			CreateMap<ReviewerDto, Reviewer>();
 		}
