@@ -50,5 +50,11 @@ namespace MovieReviewApp.Repository
 			var result = _context.SaveChanges();
 			return result > 0 ? true : false;
 		}
+
+		public bool UpdateCountry(Country country)
+		{
+			_context.Update(country);
+			return Save();
+		}
 	}
 }
