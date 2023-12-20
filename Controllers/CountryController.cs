@@ -132,7 +132,7 @@ namespace MovieReviewApp.Controllers
 				return StatusCode(500, ModelState);
 			}
 
-			return Ok("Successfully Updated!");
+			return Ok("Country Successfully Updated!");
 		}
 	}
 }
