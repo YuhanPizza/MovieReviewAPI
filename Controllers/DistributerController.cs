@@ -105,5 +105,41 @@ namespace MovieReviewApp.Controllers
 
 			return Ok("Successfully created!");
 		}
+		[HttpPut("{distributerId}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(404)]
+		public IActionResult UpdateDistributer(int distributerId, [FromBody] DistributerDto updatedDistributer)
+		{
+			if (updatedDistributer == null)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (distributerId != updatedDistributer.Id)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (!_distributerRepository.DistributerExists(distributerId))
+			{
+				return NotFound();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			var distributerMap = _mapper.Map<Distributer>(updatedDistributer);
+
+			if (!_distributerRepository.UpdateDistributer(distributerMap))
+			{
+				ModelState.AddModelError("", "Something went wrong during Update[Distributer]");
+				return StatusCode(500, ModelState);
+			}
+
+			return Ok("Distributer Successfully Updated!");
+		}
 	}
 }

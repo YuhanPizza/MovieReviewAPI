@@ -49,5 +49,10 @@ namespace MovieReviewApp.Repository
 			return result > 0 ? true : false;
 		}
 
+		public bool UpdateDistributer(Distributer distributer)
+		{
+			_context.Update(distributer);
+			return Save();
+		}
 	}
 }
