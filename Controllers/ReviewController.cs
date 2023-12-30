@@ -10,14 +10,14 @@ namespace MovieReviewApp.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class ReviewController :Controller
+	public class ReviewController : Controller
 	{
 		private IReviewRepository _reviewRepository;
 		private IMapper _mapper;
 		private DataContext _context;
 
-        public ReviewController(IReviewRepository reviewRepository,IMapper mapper,IMoviesRepository moviesRepository,  DataContext context)
-        {
+		public ReviewController(IReviewRepository reviewRepository, IMapper mapper, IMoviesRepository moviesRepository, DataContext context)
+		{
 			_reviewRepository = reviewRepository;
 			_mapper = mapper;
 			_context = context;
@@ -28,7 +28,7 @@ namespace MovieReviewApp.Controllers
 		{
 			var reviews = _mapper.Map<List<ReviewDto>>(_reviewRepository.GetReviews());
 
-			if(!ModelState.IsValid)
+			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
@@ -65,7 +65,7 @@ namespace MovieReviewApp.Controllers
 		[HttpPost]
 		[ProducesResponseType(204)]
 		[ProducesResponseType(400)]
-		public IActionResult CreateReview([FromQuery] int reviewerId, [FromQuery] int movieId,[FromBody] ReviewDto reviewCreate)
+		public IActionResult CreateReview([FromQuery] int reviewerId, [FromQuery] int movieId, [FromBody] ReviewDto reviewCreate)
 		{
 			if (reviewCreate == null)
 			{
@@ -95,6 +95,42 @@ namespace MovieReviewApp.Controllers
 			}
 
 			return Ok("Successfully created!");
+		}
+		[HttpPut("{reviewId}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(404)]
+		public IActionResult UpdateCountry(int reviewId, [FromBody] ReviewDto updatedReview)
+		{
+			if (updatedReview == null)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (reviewId != updatedReview.Id)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (!_reviewRepository.ReviewExists(reviewId))
+			{
+				return NotFound();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			var reviewMap = _mapper.Map<Review>(updatedReview);
+
+			if (!_reviewRepository.UpdateReview(reviewMap))
+			{
+				ModelState.AddModelError("", "Something went wrong during Update[Review]");
+				return StatusCode(500, ModelState);
+			}
+
+			return Ok("Review Successfully Updated!");
 		}
 	}
 }
