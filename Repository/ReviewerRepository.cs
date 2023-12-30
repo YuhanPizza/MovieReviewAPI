@@ -45,5 +45,11 @@ namespace MovieReviewApp.Repository
 			var result = _context.SaveChanges();
 			return result > 0 ? true : false;
 		}
+
+		public bool UpdateReviewer(Reviewer reviewer)
+		{
+			_context.Update(reviewer);
+			return Save();
+		}
 	}
 }

@@ -100,5 +100,41 @@ namespace MovieReviewApp.Controllers
 
 			return Ok("Successfully created!");
 		}
+		[HttpPut("{reviewerId}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(404)]
+		public IActionResult UpdateReviewer(int reviewerId, [FromBody] ReviewerDto updatedReviewer)
+		{
+			if (updatedReviewer == null)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (reviewerId != updatedReviewer.Id)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (!_reviewerRepository.ReviewerExists(reviewerId))
+			{
+				return NotFound();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			var reviewerMap = _mapper.Map<Reviewer>(updatedReviewer);
+
+			if (!_reviewerRepository.UpdateReviewer(reviewerMap))
+			{
+				ModelState.AddModelError("", "Something went wrong during Update[Reviewer]");
+				return StatusCode(500, ModelState);
+			}
+
+			return Ok("Reviewer Successfully Updated!");
+		}
 	}
 }
