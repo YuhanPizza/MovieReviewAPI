@@ -66,5 +66,11 @@ namespace MovieReviewApp.Repository
 			var result = _context.SaveChanges();
 			return result > 0 ? true : false;
 		}
+
+		public bool UpdateMovie(int distributerId, int categoryId, Movie movie)
+		{
+			_context.Update(movie);
+			return Save();
+		}
 	}
 }

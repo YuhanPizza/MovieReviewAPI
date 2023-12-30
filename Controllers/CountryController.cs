@@ -128,7 +128,7 @@ namespace MovieReviewApp.Controllers
 
 			if (!_countryRepository.UpdateCountry(countryMap))
 			{
-				ModelState.AddModelError("", "Something went wrong during Update[Category]");
+				ModelState.AddModelError("", "Something went wrong during Update[Country]");
 				return StatusCode(500, ModelState);
 			}
 

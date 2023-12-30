@@ -125,5 +125,42 @@ namespace MovieReviewApp.Controllers
 
 			return Ok("Successfully created!");
 		}
+
+		[HttpPut("{movieId}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(404)]
+		public IActionResult UpdateMovie(int movieId,[FromQuery] int distributerId, [FromQuery] int categoryId, [FromBody] MovieDto updatedMovie)
+		{
+			if (updatedMovie == null)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (movieId != updatedMovie.Id)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (!_moviesRepository.MovieExists(movieId))
+			{
+				return NotFound();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest();
+			}
+
+			var movieMap = _mapper.Map<Movie>(updatedMovie);
+
+			if (!_moviesRepository.UpdateMovie(distributerId,categoryId,movieMap))
+			{
+				ModelState.AddModelError("", "Something went wrong during Update[Movie]");
+				return StatusCode(500, ModelState);
+			}
+
+			return Ok("Movie Successfully Updated!");
+		}
 	}
 }
