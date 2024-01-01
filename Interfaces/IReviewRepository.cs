@@ -11,6 +11,8 @@ namespace MovieReviewApp.Interfaces
 
 		bool CreateReview(int reviewerId, int movieId, Review review);
 		bool UpdateReview(Review review);
+		bool DeleteReview(Review review);
+		bool DeleteReviews(List<Review> reviews);
 		bool Save();
 	}
 }

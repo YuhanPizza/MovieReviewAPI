@@ -31,6 +31,12 @@ namespace MovieReviewApp.Repository
 			return Save();
 		}
 
+		public bool DeleteMovie(Movie movie)
+		{
+			_context.Remove(movie);
+			return Save();
+		}
+
 		public Movie GetMovie(int id)
 		{
 			return _context.Movies.Where(m => m.Id == id).FirstOrDefault();

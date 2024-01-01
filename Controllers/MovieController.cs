@@ -15,10 +15,12 @@ namespace MovieReviewApp.Controllers
 		private readonly IMoviesRepository _moviesRepository;
 		private readonly DataContext _context;
 		private readonly IMapper _mapper; //when doing data conversions you need data mapper because you could just convert the movie model to moviedto
+		private readonly IReviewRepository _reviewRepository;
 
-		public MovieController(IMoviesRepository moviesRepository, DataContext context, IMapper mapper) 
+		public MovieController(IMoviesRepository moviesRepository, DataContext context, IMapper mapper, IReviewRepository reviewRepository) 
 		{
 			_moviesRepository = moviesRepository;
+			_reviewRepository = reviewRepository;
 			_context = context;
 			_mapper = mapper;
 		}
@@ -161,6 +163,37 @@ namespace MovieReviewApp.Controllers
 			}
 
 			return Ok("Movie Successfully Updated!");
+		}
+		[HttpDelete("{movieId}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(404)]
+		public IActionResult DeleteMovie(int movieId)
+		{
+			if (!_moviesRepository.MovieExists(movieId))
+			{
+				return NotFound();
+			}
+
+			var reviewsDelete = _reviewRepository.GetReviewsOfAMovie(movieId);
+
+			var movieDelete = _moviesRepository.GetMovie(movieId);
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+			if (!_reviewRepository.DeleteReviews(reviewsDelete.ToList()))//delete range method
+			{
+				ModelState.AddModelError("", "Error removing Reviews!");
+			}
+
+			if (!_moviesRepository.DeleteMovie(movieDelete))
+			{
+				ModelState.AddModelError("", "Something went wrong Removing Movie");
+			}
+
+			return Ok("Movie Sucessfully Removed!");
 		}
 	}
 }
