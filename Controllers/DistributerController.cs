@@ -141,5 +141,30 @@ namespace MovieReviewApp.Controllers
 
 			return Ok("Distributer Successfully Updated!");
 		}
+		[HttpDelete("{distributerId}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(404)]
+		public IActionResult DeleteDistributer(int distributerId)
+		{
+			if (!_distributerRepository.DistributerExists(distributerId))
+			{
+				return NotFound();
+			}
+
+			var distributerDelete = _distributerRepository.GetDistributer(distributerId);
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			if (!_distributerRepository.DeleteDistributer(distributerDelete))
+			{
+				ModelState.AddModelError("", "Something went wrong Removing Distributer");
+			}
+
+			return Ok("Distributer Sucessfully Removed!");
+		}
 	}
 }

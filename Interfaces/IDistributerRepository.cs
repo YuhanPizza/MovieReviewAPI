@@ -11,6 +11,7 @@ namespace MovieReviewApp.Interfaces
 		bool DistributerExists(int distributerId);
 		bool CreateDistributer(Distributer distributer);
 		bool UpdateDistributer(Distributer distributer);
+		bool DeleteDistributer(Distributer distributer);
 		bool Save();
 	}
 }

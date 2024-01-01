@@ -54,5 +54,11 @@ namespace MovieReviewApp.Repository
 			_context.Update(distributer);
 			return Save();
 		}
+
+		public bool DeleteDistributer(Distributer distributer)
+		{
+			_context.Remove(distributer);
+			return Save();
+		}
 	}
 }
