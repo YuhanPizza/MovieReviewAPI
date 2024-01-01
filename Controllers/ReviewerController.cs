@@ -13,12 +13,14 @@ namespace MovieReviewApp.Controllers
 	public class ReviewerController: Controller
 	{
 		private readonly IReviewerRepository _reviewerRepository;
+		private readonly IReviewRepository _reviewRepository;
 		private readonly IMapper _mapper;
 		private readonly DataContext _context;
 
-		public ReviewerController(IReviewerRepository reviewerRepository, IMapper mapper,DataContext context)
+		public ReviewerController(IReviewerRepository reviewerRepository, IMapper mapper,DataContext context, IReviewRepository reviewRepository)
         {
 			_reviewerRepository = reviewerRepository;
+			_reviewRepository = reviewRepository;
 			_mapper = mapper;
 			_context = context;
 		}
@@ -135,6 +137,36 @@ namespace MovieReviewApp.Controllers
 			}
 
 			return Ok("Reviewer Successfully Updated!");
+		}
+		[HttpDelete("{reviewerId}")]
+		[ProducesResponseType(204)]
+		[ProducesResponseType(400)]
+		[ProducesResponseType(404)]
+		public IActionResult DeleteReviewer(int reviewerId)
+		{
+			if (!_reviewerRepository.ReviewerExists(reviewerId))
+			{
+				return NotFound();
+			}
+
+			var reviewsDelete = _reviewerRepository.GetReviewsByReviewer(reviewerId);
+			var reviewerDelete = _reviewerRepository.GetReviewer(reviewerId);
+
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+			if (!_reviewRepository.DeleteReviews(reviewsDelete.ToList()))//delete range method
+			{
+				ModelState.AddModelError("", "Error removing Reviews!");
+			}
+
+			if (!_reviewerRepository.DeleteReviewer(reviewerDelete))
+			{
+				ModelState.AddModelError("", "Something went wrong Removing Reviewer");
+			}
+
+			return Ok("Reviewer Sucessfully Removed!");
 		}
 	}
 }
