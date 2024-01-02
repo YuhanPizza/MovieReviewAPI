@@ -1,5 +1,7 @@
 # Welcome to MovieReviewAPI! [Working on Unit Testing]🌟
 
+![MovieReviewAPI-Get-Post-Put-Delete](https://github.com/YuhanPizza/MovieReviewAPI/assets/107896556/96b4f05c-9a22-4165-8a0b-9490b884577d)
+
 Hey there! MovieReviewAPI is your go-to platform for managing movie reviews through a simple and powerful API built with ASP.NET MVC Core 6.0. With this API, you can perform various operations on different entities like Categories, Countries, Distributers, Movies, Reviews, and Reviewers.
 
 ## API Endpoints 🚀
@@ -52,6 +54,7 @@ Hey there! MovieReviewAPI is your go-to platform for managing movie reviews thro
 - **POST** `/api/Distributer`
   - Create a new distributor.
 
+![GetById](https://github.com/YuhanPizza/MovieReviewAPI/assets/107896556/7220e1d8-3335-49fb-8fe1-f5d607ea41ba)
 - **GET** `/api/Distributer/{distributerId}`
   - Retrieve details of a specific distributor.
 
@@ -69,12 +72,13 @@ Hey there! MovieReviewAPI is your go-to platform for managing movie reviews thro
 - **GET** `/api/Movie`
   - Retrieve all movies.
 
+![Post-Request](https://github.com/YuhanPizza/MovieReviewAPI/assets/107896556/b29eca53-eefc-490a-8f38-a7d889478b35)
 - **POST** `/api/Movie`
   - Create a new movie.
 
 - **GET** `/api/Movie/{movieId}`
   - Retrieve details of a specific movie.
-
+    
 - **PUT** `/api/Movie/{movieId}`
   - Update a specific movie.
 
@@ -95,6 +99,7 @@ Hey there! MovieReviewAPI is your go-to platform for managing movie reviews thro
 - **GET** `/api/Review/{reviewId}`
   - Retrieve details of a specific review.
 
+![UpdateById-Request](https://github.com/YuhanPizza/MovieReviewAPI/assets/107896556/b664a337-258b-4e03-ad51-df7f99954c4c)
 - **PUT** `/api/Review/{reviewId}`
   - Update a specific review.
 
@@ -118,6 +123,7 @@ Hey there! MovieReviewAPI is your go-to platform for managing movie reviews thro
 - **PUT** `/api/Reviewer/{reviewerId}`
   - Update a specific reviewer.
 
+![DeleteById](https://github.com/YuhanPizza/MovieReviewAPI/assets/107896556/0306ed7e-807b-48b5-b9d5-8747e00f34a1)
 - **DELETE** `/api/Reviewer/{reviewerId}`
   - Delete a specific reviewer.
 
