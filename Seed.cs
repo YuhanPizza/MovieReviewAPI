@@ -1,7 +1,7 @@
 ﻿using MovieReviewApp.Data;
 using MovieReviewApp.Models;
 
-namespace PokemonReviewApp
+namespace MovieReviewApp
 {
 	public class Seed
 	{

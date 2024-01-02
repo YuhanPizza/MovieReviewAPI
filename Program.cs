@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MovieReviewApp.Data;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Repository;
-using PokemonReviewApp;
+using MovieReviewApp;
 using System.Text.Json.Serialization;
 //isntall entity framework tools from nugetmanager to use Add-Migration command on package manager
 
