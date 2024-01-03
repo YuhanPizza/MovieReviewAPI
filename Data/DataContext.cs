@@ -17,7 +17,8 @@ namespace MovieReviewApp.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Reviewer> Reviewers { get; set; }
 
-        //Whenever you set up your entity framework and you set up your entity framework context you have to manipulate your tables in some ways
+        //Whenever you set up your entity framework and you set up your
+        //entity framework context you have to manipulate your tables in some ways
         //on modelcreating is how you do that without going to your tables
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -25,11 +26,11 @@ namespace MovieReviewApp.Data
                 .HasKey(mc => new { mc.MovieId, mc.CategoryId }); // how you link the two id's together
             modelBuilder.Entity<MovieCategory>()
                 .HasOne(m => m.Movie)
-                .WithMany(mc => mc.MovieCategories)
+                .WithMany(mc => mc.MovieCategories) //many to many, many movies go with many categories.
                 .HasForeignKey(c => c.MovieId);
 			modelBuilder.Entity<MovieCategory>()
 				.HasOne(m => m.Category)
-				.WithMany(mc => mc.MovieCategories)
+				.WithMany(mc => mc.MovieCategories) //many to many, many categories go with many movies.
 				.HasForeignKey(c => c.CategoryId);
 		}
 	}

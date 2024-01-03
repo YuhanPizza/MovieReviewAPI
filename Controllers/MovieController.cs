@@ -13,15 +13,13 @@ namespace MovieReviewApp.Controllers
 	public class MovieController : Controller
 	{
 		private readonly IMoviesRepository _moviesRepository;
-		private readonly DataContext _context;
 		private readonly IMapper _mapper; //when doing data conversions you need data mapper because you could just convert the movie model to moviedto
 		private readonly IReviewRepository _reviewRepository;
 
-		public MovieController(IMoviesRepository moviesRepository, DataContext context, IMapper mapper, IReviewRepository reviewRepository) 
+		public MovieController(IMoviesRepository moviesRepository, IMapper mapper, IReviewRepository reviewRepository) 
 		{
 			_moviesRepository = moviesRepository;
 			_reviewRepository = reviewRepository;
-			_context = context;
 			_mapper = mapper;
 		}
 
