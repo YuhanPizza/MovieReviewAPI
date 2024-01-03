@@ -222,3 +222,42 @@ Want to kickstart the party with some seed data? Just run the application with t
 
 
 Feel free to customize and add your own flavor to the API. It's here to make your movie review adventures even more awesome! 🍿🎬🚀
+
+### Unit Testing 
+I use xUnit, FakeItEasy and Fluent Assertions.
+
+- **[xUnit](https://xunit.net/):** A testing framework that keeps things simple and snappy. 🚦
+
+- **[FakeItEasy](https://fakeiteasy.github.io/):** Our backstage pass to mocking – perfect for faking it 'til you make it! 🎭
+
+- **[Fluent Assertions](https://fluentassertions.com/introduction):** Making assertions a breeze with a touch of flair. Fluent and fabulous! 💬
+
+## Controllers
+
+**MovieController:** [InProgress]!
+
+- GetMovies() Passed!
+- CreateMovies() Passed!
+- GetMovie() --InProgress--
+- GetMovieRaiting() --InProgress--
+- UpdateMovie() --InProgress--
+- DeleteMovie() --InProgress--
+
+**CategoryController:** [TBD]!
+
+- GetCategories() 
+- GetCategory()
+- GetMovieByCategoryId()
+- CreateCategory() 
+- UpdateCategory() 
+- DeleteCategory()
+
+**CountryController:** [TBD]!
+
+- GetCountries() 
+- GetCountry()
+- GetCountryOfAnDistributer()
+- CreateCountry() 
+- UpdateCountry() 
+- DeleteCountry()
+  
