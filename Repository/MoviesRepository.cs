@@ -1,4 +1,5 @@
 ﻿using MovieReviewApp.Data;
+using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Models;
 
@@ -8,10 +9,8 @@ namespace MovieReviewApp.Repository
 	{
 		private readonly DataContext _context;
 
-		public MoviesRepository(DataContext context)
-        {
-			_context = context;
-		}
+		public MoviesRepository(DataContext context) => _context = context;
+
 
 		public bool CreateMovie(int distributerId, int categoryId, Movie movie)
 		{
@@ -37,15 +36,11 @@ namespace MovieReviewApp.Repository
 			return Save();
 		}
 
-		public Movie GetMovie(int id)
-		{
-			return _context.Movies.Where(m => m.Id == id).FirstOrDefault();
-		}
+		public Movie GetMovie(int id) => _context.Movies.Where(m => m.Id == id).FirstOrDefault();
+	
 
-		public Movie GetMovie(string title)
-		{
-			return _context.Movies.Where(m => m.Title == title).FirstOrDefault();
-		}
+		public Movie GetMovie(string title) => _context.Movies.Where(m => m.Title == title).FirstOrDefault();
+
 
 		public decimal GetMovieRaiting(int movieId)
 		{
@@ -57,15 +52,13 @@ namespace MovieReviewApp.Repository
 			return ((decimal)rating.Sum(r => r.Rating) / rating.Count());
 		}
 
-		public ICollection<Movie> GetMovies()
-		{
-			return _context.Movies.OrderBy(p => p.Id).ToList();
-		}
+		public ICollection<Movie> GetMovies() => _context.Movies.OrderBy(p => p.Id).ToList();
 
-		public bool MovieExists(int movieId)
-		{
-			return _context.Movies.Any(m => m.Id == movieId);
-		}
+		public Movie GetMoviesTrimToUpper(MovieDto movies) => GetMovies()
+				.Where(c => c.Title.Trim().ToUpper() == movies.Title.TrimEnd().ToUpper())
+				.FirstOrDefault();
+
+		public bool MovieExists(int movieId) => _context.Movies.Any(m => m.Id == movieId);
 
 		public bool Save()
 		{

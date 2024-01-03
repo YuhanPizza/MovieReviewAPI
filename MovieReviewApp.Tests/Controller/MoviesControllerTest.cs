@@ -6,6 +6,8 @@ using MovieReviewApp.Controllers;
 using MovieReviewApp.Data;
 using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
+using MovieReviewApp.Models;
+using MovieReviewApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,5 +48,27 @@ namespace MovieReviewApp.Tests.Controller
 			result.Should().BeOfType(typeof(OkObjectResult)); //okresult
 		}
 
+		[Fact]
+		public void MovieController_CreateMovie_ReturnOk()
+		{
+			//Arrange
+			int distributerId = 1;
+			int categoryId = 2;
+			var movie = A.Fake<Movie>();
+			var movieCreate = A.Fake<MovieDto>();
+			var movies = A.Fake<ICollection<MovieDto>>();
+			var moviesList = A.Fake<List<MovieDto>>();
+			A.CallTo(() => _moviesRepositories.GetMoviesTrimToUpper(movieCreate)).Returns(movie);
+			A.CallTo(() => _mapper.Map<Movie>(movieCreate)).Returns(movie);
+			A.CallTo(() => _moviesRepositories.CreateMovie(distributerId, categoryId, movie)).Returns(true);
+			var controller = new MovieController(_moviesRepositories, _mapper, _reviewRepositories);
+
+			//Act
+			var result = controller.CreateMovie(distributerId, categoryId, movieCreate);
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(ObjectResult));
+		}
     }
 }

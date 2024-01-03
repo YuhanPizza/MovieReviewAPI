@@ -100,9 +100,7 @@ namespace MovieReviewApp.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			var movie = _moviesRepository.GetMovies()
-				.Where(c => c.Title.Trim().ToUpper() == movieCreate.Title.TrimEnd().ToUpper())
-				.FirstOrDefault();
+			var movie = _moviesRepository.GetMoviesTrimToUpper(movieCreate);
 
 			//Error Handling
 			if (movie != null)
