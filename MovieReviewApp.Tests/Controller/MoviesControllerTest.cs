@@ -49,6 +49,23 @@ namespace MovieReviewApp.Tests.Controller
 		}
 
 		[Fact]
+		public void MovieController_GetMovie_ReturnOk()
+		{
+			//Arrange
+			int movieId = 1;
+			A.CallTo(()=> _moviesRepositories.MovieExists(movieId)).Returns(true);
+			var controller = new MovieController(_moviesRepositories, _mapper, _reviewRepositories);
+
+			//Act
+			var result = controller.GetMovie(movieId);
+
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(OkObjectResult));
+		}
+
+		[Fact]
 		public void MovieController_CreateMovie_ReturnOk()
 		{
 			//Arrange
@@ -58,7 +75,7 @@ namespace MovieReviewApp.Tests.Controller
 			var movieCreate = A.Fake<MovieDto>();
 			var movies = A.Fake<ICollection<MovieDto>>();
 			var moviesList = A.Fake<List<MovieDto>>();
-			A.CallTo(() => _moviesRepositories.GetMoviesTrimToUpper(movieCreate)).Returns(movie);
+			A.CallTo(() => _moviesRepositories.GetMoviesTrimToUpper(movieCreate)).Returns(null);
 			A.CallTo(() => _mapper.Map<Movie>(movieCreate)).Returns(movie);
 			A.CallTo(() => _moviesRepositories.CreateMovie(distributerId, categoryId, movie)).Returns(true);
 			var controller = new MovieController(_moviesRepositories, _mapper, _reviewRepositories);
@@ -68,7 +85,52 @@ namespace MovieReviewApp.Tests.Controller
 
 			//Assert
 			result.Should().NotBeNull();
-			result.Should().BeOfType(typeof(ObjectResult));
+			result.Should().BeOfType(typeof(OkObjectResult));
 		}
-    }
+		[Fact]
+		public void MovieController_UpdateMovie_ResultOk()
+		{
+			//Arrange
+			int distributerId = 1;
+			int categoryId = 2;
+			int movieId = 3;
+			var movie = A.Fake<Movie>();
+			var movieUpdate = A.Fake<MovieDto>();
+			movieUpdate.Id = movieId;
+			A.CallTo(() => _moviesRepositories.MovieExists(movieId)).Returns(true);
+			A.CallTo(()=> _mapper.Map<Movie>(movieUpdate)).Returns(movie);
+			A.CallTo(()=> _moviesRepositories.UpdateMovie(distributerId,categoryId, movie)).Returns(true);
+			var controller = new MovieController(_moviesRepositories, _mapper, _reviewRepositories);
+
+			//Act
+			var result = controller.UpdateMovie(movieId, distributerId, categoryId, movieUpdate);
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(OkObjectResult));
+		}
+		[Fact]
+		public void MovieController_DeleteMovie_ResultOk()
+		{
+			//Arrange
+			int movieId = 3;
+			var movie = A.Fake<Movie>();
+			var review = A.Fake<Review>();
+			var reviewsList = A.Fake<List<Review>>();
+			var reviews = A.Fake<ICollection<Review>>();
+			A.CallTo(() => _moviesRepositories.MovieExists(movieId)).Returns(true);
+			A.CallTo(() => _reviewRepositories.GetReviewsOfAMovie(movieId)).Returns(reviews);
+			A.CallTo(() => _moviesRepositories.GetMovie(movieId)).Returns(movie);
+			A.CallTo(() => _reviewRepositories.DeleteReviews(reviewsList)).Returns(true);
+			A.CallTo(() => _moviesRepositories.DeleteMovie(movie)).Returns(true);
+			var controller = new MovieController(_moviesRepositories, _mapper, _reviewRepositories);
+
+			//Act
+			var result = controller.DeleteMovie(movieId);
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(OkObjectResult));
+		}
+	}
 }
