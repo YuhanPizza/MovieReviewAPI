@@ -18,16 +18,16 @@ namespace MovieReviewApp.Tests.Controller
 	{
 		private readonly ICategoryRepository _categoryRepository;
 		private readonly IMapper _mapper;
-        public CategoryControllerTest()
-        {
-            _categoryRepository = A.Fake<ICategoryRepository>();
-            _mapper = A.Fake<IMapper>();
-        }
+		public CategoryControllerTest()
+		{
+			_categoryRepository = A.Fake<ICategoryRepository>();
+			_mapper = A.Fake<IMapper>();
+		}
 
 		//Tests
 		[Fact]
-        public void CategoryController_GetCategories_ReturnOk()
-        {
+		public void CategoryController_GetCategories_ReturnOk()
+		{
 			//Arrange
 			var category = A.Fake<ICollection<CategoryDto>>();
 			var categoriesList = A.Fake<List<CategoryDto>>();
@@ -49,8 +49,8 @@ namespace MovieReviewApp.Tests.Controller
 			//Arrange
 			int categoryId = 1;
 			var categoryDto = A.Fake<CategoryDto>();
-			A.CallTo(()=>  _categoryRepository.CategoryExists(categoryId)).Returns(true);
-			A.CallTo(()=> _mapper.Map<CategoryDto>(_categoryRepository.GetCategory(categoryId))).Returns(categoryDto);
+			A.CallTo(() => _categoryRepository.CategoryExists(categoryId)).Returns(true);
+			A.CallTo(() => _mapper.Map<CategoryDto>(_categoryRepository.GetCategory(categoryId))).Returns(categoryDto);
 			var controller = new CategoryController(_categoryRepository, _mapper);
 
 			//Act
