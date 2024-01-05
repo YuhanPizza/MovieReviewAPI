@@ -260,4 +260,32 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - CreateCountry() 
 - UpdateCountry() 
 - DeleteCountry()
+
+**DistributerController:** [TBD]!
+
+- GetDistributers() 
+- GetDistributer()
+- GetMovieByDistributerId()
+- CreateDistributer() 
+- UpdateDistributer() 
+- DeleteDistributer()
+
+**ReviewController:** [TBD]!
+
+- GetReviews() 
+- GetReview()
+- GetReviewsForAMovie()
+- CreateReview() 
+- UpdateReview() 
+- DeleteReview()
+
+**ReviewerController:** [TBD]!
+
+- GetReviewers() 
+- GetReviewer()
+- GetReviewsByAReviewer()
+- CreateReviewer() 
+- UpdateReviewer() 
+- DeleteReviewer()
+
   
