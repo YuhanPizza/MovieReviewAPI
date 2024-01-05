@@ -238,10 +238,10 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 
 - GetMovies() Passed!
 - CreateMovies() Passed!
-- GetMovie() --InProgress--
-- GetMovieRaiting() --InProgress--
-- UpdateMovie() --InProgress--
-- DeleteMovie() --InProgress--
+- GetMovie() Passed!
+- GetMovieRaiting() Passed!
+- UpdateMovie() Passed!
+- DeleteMovie() Passed!
 
 **CategoryController:** [TBD]!
 
