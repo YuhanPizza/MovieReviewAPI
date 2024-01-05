@@ -234,7 +234,7 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 
 ## Controllers
 
-**MovieController:** [InProgress]!
+**MovieController:** [Passed!]!
 
 - GetMovies() Passed!
 - CreateMovies() Passed!
@@ -243,14 +243,14 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - UpdateMovie() Passed!
 - DeleteMovie() Passed!
 
-**CategoryController:** [TBD]!
+**CategoryController:** [Passed!]!
 
-- GetCategories() 
-- GetCategory()
-- GetMovieByCategoryId()
-- CreateCategory() 
-- UpdateCategory() 
-- DeleteCategory()
+- GetCategories() Passed!
+- GetCategory() Passed!
+- GetMovieByCategoryId() Passed!
+- CreateCategory() Passed!
+- UpdateCategory() Passed!
+- DeleteCategory() Passed!
 
 **CountryController:** [TBD]!
 
