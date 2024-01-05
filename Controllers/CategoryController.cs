@@ -13,11 +13,9 @@ namespace MovieReviewApp.Controllers
 	public class CategoryController : Controller
 	{
         private readonly ICategoryRepository _categoryRepository;
-        private readonly DataContext _context;
         private readonly IMapper _mapper;
-        public CategoryController(ICategoryRepository categoryRepository, DataContext context, IMapper mapper)
+        public CategoryController(ICategoryRepository categoryRepository, IMapper mapper)
         {
-            _context = context;
             _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
