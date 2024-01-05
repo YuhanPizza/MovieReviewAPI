@@ -70,9 +70,7 @@ namespace MovieReviewApp.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			var category = _categoryRepository.GetCategories()
-				.Where(c => c.Name.Trim().ToUpper() == categoryCreate.Name.TrimEnd().ToUpper())
-				.FirstOrDefault();
+			var category = _categoryRepository.GetCategoriesTrimToUpper(categoryCreate); //if not null the category already exists
 
 			//Error Handling
 			if (category != null) 

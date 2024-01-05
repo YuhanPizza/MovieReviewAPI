@@ -1,4 +1,5 @@
 ﻿using MovieReviewApp.Data;
+using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Models;
 
@@ -40,16 +41,14 @@ namespace MovieReviewApp.Repository
 			return _context.Categories.OrderBy(c => c.Name).ToList();
 		}
 
-		public Category GetCategory(int id)
-		{
-			return _context.Categories.Where(c => c.Id == id).FirstOrDefault();
-		}
+		public Category GetCategoriesTrimToUpper(CategoryDto categories) => GetCategories()
+				.Where(c => c.Name.Trim().ToUpper() == categories.Name.TrimEnd().ToUpper())
+				.FirstOrDefault();
 
-		public ICollection<Movie> GetMovieByCategory(int id)
-		{
-			return _context.MovieCategories.Where( mc => mc.CategoryId == id).Select( c => c.Movie).ToList();
-		}
 
+		public Category GetCategory(int id) => _context.Categories.Where(c => c.Id == id).FirstOrDefault();
+
+		public ICollection<Movie> GetMovieByCategory(int id) => _context.MovieCategories.Where(mc => mc.CategoryId == id).Select(c => c.Movie).ToList();
 		public bool Save()
 		{
 			//savechanges: 

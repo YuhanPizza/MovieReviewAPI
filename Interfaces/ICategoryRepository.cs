@@ -1,4 +1,5 @@
-﻿using MovieReviewApp.Models;
+﻿using MovieReviewApp.Dto;
+using MovieReviewApp.Models;
 
 namespace MovieReviewApp.Interfaces
 {
@@ -10,6 +11,7 @@ namespace MovieReviewApp.Interfaces
 		bool CategoryExists(int id);
 		bool CreateCategory (Category category);
 		bool UpdateCategory (Category category);
+		Category GetCategoriesTrimToUpper(CategoryDto categories);
 		bool DeleteCategory (Category category);
 		bool Save();
 	}
