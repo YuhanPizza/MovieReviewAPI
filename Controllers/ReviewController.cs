@@ -100,7 +100,7 @@ namespace MovieReviewApp.Controllers
 		[ProducesResponseType(204)]
 		[ProducesResponseType(400)]
 		[ProducesResponseType(404)]
-		public IActionResult UpdateCountry(int reviewId, [FromBody] ReviewDto updatedReview)
+		public IActionResult UpdateReview(int reviewId, [FromBody] ReviewDto updatedReview)
 		{
 			if (updatedReview == null)
 			{
