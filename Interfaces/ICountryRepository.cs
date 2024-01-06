@@ -1,4 +1,5 @@
-﻿using MovieReviewApp.Models;
+﻿using MovieReviewApp.Dto;
+using MovieReviewApp.Models;
 
 namespace MovieReviewApp.Interfaces
 {
@@ -11,6 +12,7 @@ namespace MovieReviewApp.Interfaces
 		bool CountryExists(int id);
 		bool CreateCountry(Country country);
 		bool UpdateCountry(Country country);
+		Country GetCountriesTrimToUpper(CountryDto countries);
 		bool DeleteCountry(Country country);
 		bool Save();
 	}

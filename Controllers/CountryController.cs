@@ -12,15 +12,13 @@ namespace MovieReviewApp.Controllers
 	[ApiController]
 	public class CountryController: Controller
 	{
-		private ICountryRepository _countryRepository;
-		private IMapper _mapper;
-		private DataContext _context;
+		private readonly ICountryRepository _countryRepository;
+		private readonly IMapper _mapper;
 
-		public CountryController(ICountryRepository countryRepository, IMapper mapper, DataContext context)
+		public CountryController(ICountryRepository countryRepository, IMapper mapper)
         {
 			_countryRepository = countryRepository;
 			_mapper = mapper;
-			_context = context;
 		}
 
 		[HttpGet]
@@ -73,9 +71,7 @@ namespace MovieReviewApp.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			var country = _countryRepository.GetCountries()
-				.Where(c => c.Name.Trim().ToUpper() == countryCreate.Name.TrimEnd().ToUpper())
-				.FirstOrDefault();
+			var country = _countryRepository.GetCountriesTrimToUpper(countryCreate);
 
 			//Error Handling
 			if(country != null)

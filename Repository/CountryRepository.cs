@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MovieReviewApp.Data;
+using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Models;
 
@@ -14,10 +15,7 @@ namespace MovieReviewApp.Repository
 			_context = context;
 			_mapper = mapper;
 		}
-        public bool CountryExists(int id)
-		{
-			return _context.Countries.Any(c => c.Id == id);
-		}
+        public bool CountryExists(int id) => _context.Countries.Any(c => c.Id == id);
 
 		public bool CreateCountry(Country country)
 		{
@@ -31,25 +29,17 @@ namespace MovieReviewApp.Repository
 			return Save();
 		}
 
-		public ICollection<Country> GetCountries()
-		{
-			return _context.Countries.OrderBy(c => c.Name).ToList();
-		}
+		public ICollection<Country> GetCountries() => _context.Countries.OrderBy(c => c.Name).ToList();
 
-		public Country GetCountry(int id)
-		{
-			return _context.Countries.Where(c => c.Id == id).FirstOrDefault();
-		}
+		public Country GetCountriesTrimToUpper(CountryDto countryCreate) => GetCountries().Where(c => c.Name.Trim().ToUpper() == countryCreate.Name.TrimEnd().ToUpper())
+				.FirstOrDefault();
 
-		public Country GetCountryByDistributer(int distributerId)
-		{
-			return _context.Distributers.Where(d => d.Id == distributerId).Select(c => c.Country).FirstOrDefault();
-		}
+		public Country GetCountry(int id) => _context.Countries.Where(c => c.Id == id).FirstOrDefault();
 
-		public ICollection<Distributer> GetDistributersFromACountry(int id)
-		{
-			return _context.Distributers.Where(c => c.Country.Id == id).ToList();
-		}
+		public Country GetCountryByDistributer(int distributerId) => _context.Distributers.Where(d => d.Id == distributerId).Select(c => c.Country).FirstOrDefault();
+
+
+		public ICollection<Distributer> GetDistributersFromACountry(int id) => _context.Distributers.Where(c => c.Country.Id == id).ToList();
 
 		public bool Save()
 		{
