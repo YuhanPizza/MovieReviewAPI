@@ -252,14 +252,14 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - UpdateCategory() Passed!
 - DeleteCategory() Passed!
 
-**CountryController:** [TBD]!
+**CountryController:** [Passed]!
 
-- GetCountries() 
-- GetCountry()
-- GetCountryOfAnDistributer()
-- CreateCountry() 
-- UpdateCountry() 
-- DeleteCountry()
+- GetCountries() Passed!
+- GetCountry() Passed!
+- GetCountryOfAnDistributer() Passed!
+- CreateCountry() Passed!
+- UpdateCountry() Passed!
+- DeleteCountry() Passed!
 
 **DistributerController:** [TBD]!
 
