@@ -263,12 +263,12 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 
 **DistributerController:** [TBD]!
 
-- GetDistributers() 
-- GetDistributer()
-- GetMovieByDistributerId()
-- CreateDistributer() 
-- UpdateDistributer() 
-- DeleteDistributer()
+- GetDistributers() Passed!
+- GetDistributer() Passed!
+- GetMovieByDistributerId() Passed!
+- CreateDistributer() Passed!
+- UpdateDistributer() Passed!
+- DeleteDistributer() Passed!
 
 **ReviewController:** [TBD]!
 
