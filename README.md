@@ -233,6 +233,9 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - **[Fluent Assertions](https://fluentassertions.com/introduction):** Making assertions a breeze with a touch of flair. Fluent and fabulous! 💬
 
 ## Controllers
+#Quick Run Down on how I unit tested the Controllers. 
+
+[![Alt text](https://img.youtube.com/vi/PS0SsFcted8/0.jpg)](https://youtu.be/PS0SsFcted8)
 
 **MovieController:** [Passed!]!
 
