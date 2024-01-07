@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using MovieReviewApp.Data;
+using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Models;
 
@@ -60,5 +61,9 @@ namespace MovieReviewApp.Repository
 			_context.Remove(distributer);
 			return Save();
 		}
+
+		public Distributer GetDistributersTrimToUpper(DistributerDto distributerDto) => GetDistributers()
+			.Where(d => d.Company.Trim().ToUpper() == distributerDto.Company.TrimEnd().ToUpper())
+				.FirstOrDefault();
 	}
 }

@@ -1,4 +1,5 @@
-﻿using MovieReviewApp.Models;
+﻿using MovieReviewApp.Dto;
+using MovieReviewApp.Models;
 
 namespace MovieReviewApp.Interfaces
 {
@@ -11,6 +12,7 @@ namespace MovieReviewApp.Interfaces
 		bool DistributerExists(int distributerId);
 		bool CreateDistributer(Distributer distributer);
 		bool UpdateDistributer(Distributer distributer);
+		Distributer GetDistributersTrimToUpper(DistributerDto distributerDto);
 		bool DeleteDistributer(Distributer distributer);
 		bool Save();
 	}

@@ -14,14 +14,12 @@ namespace MovieReviewApp.Controllers
 	{
 		private readonly IDistributerRepository _distributerRepository;
 		private readonly ICountryRepository _countryRepository;
-		private readonly DataContext _context;
 		private readonly IMapper _mapper;
 
-		public DistributerController(IDistributerRepository distributerRepository,ICountryRepository countryRepository, DataContext context, IMapper mapper)
+		public DistributerController(IDistributerRepository distributerRepository,ICountryRepository countryRepository, IMapper mapper)
 		{
 			_distributerRepository = distributerRepository;
 			_countryRepository = countryRepository;
-			_context = context;
 			_mapper = mapper;
 		}
 		[HttpGet]
@@ -78,9 +76,7 @@ namespace MovieReviewApp.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			var distributer = _distributerRepository.GetDistributers()
-				.Where(d => d.Company.Trim().ToUpper() == distributerCreate.Company.TrimEnd().ToUpper())
-				.FirstOrDefault();
+			var distributer = _distributerRepository.GetDistributersTrimToUpper(distributerCreate);
 
 			//Error Handling
 			if (distributer != null)
