@@ -235,7 +235,7 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 ## Controllers
 #Quick Run Down on how I unit tested the Controllers. 
 
-[![Alt text](https://img.youtube.com/vi/PS0SsFcted8/0.jpg)](https://youtu.be/PS0SsFcted8)
+[![Click to play](https://img.youtube.com/vi/PS0SsFcted8/0.jpg)](https://youtu.be/PS0SsFcted8)
 
 **MovieController:** [Passed!]!
 
