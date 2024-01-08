@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieReviewApp.Data;
+using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Models;
 
@@ -34,6 +35,12 @@ namespace MovieReviewApp.Repository
 		public ICollection<Reviewer> GetReviewers()
 		{
 			return _context.Reviewers.ToList();
+		}
+
+		public Reviewer GetReviewersTrimToUpper(ReviewerDto reviewersDto)
+		{
+			return GetReviewers().Where(c => c.FirstName.Trim().ToUpper() == reviewersDto.FirstName.TrimEnd().ToUpper())
+				.FirstOrDefault();
 		}
 
 		public ICollection<Review> GetReviewsByReviewer(int reviewerId)

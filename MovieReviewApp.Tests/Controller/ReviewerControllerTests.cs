@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MovieReviewApp.Controllers;
 using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
+using MovieReviewApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,68 @@ namespace MovieReviewApp.Tests.Controller
 
 			//Act
 			var result = controller.GetReviewsByAReviewer(reviewerId);
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(OkObjectResult));
+		}
+
+		[Fact]
+		public void ReviewerController_CreateReviewer_ReturnOk()
+		{
+			//Arrange
+			var reviewerCreate = A.Fake<ReviewerDto>();
+			var reviewer = A.Fake<Reviewer>();
+			A.CallTo(() => _reviewerRepository.GetReviewersTrimToUpper(reviewerCreate)).Returns(null);
+			A.CallTo(() => _mapper.Map<Reviewer>(reviewerCreate)).Returns(reviewer);
+			A.CallTo(() => _reviewerRepository.CreateReviewer(reviewer)).Returns(true);
+			var controller = new ReviewerController(_reviewerRepository, _mapper, _reviewRepository);
+
+			//Act
+			var result = controller.CreateReviewer(reviewerCreate);
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(OkObjectResult));
+		}
+
+		[Fact]
+		public void ReviewerController_UpdateReviewer_ReturnOk()
+		{
+			//Arrange
+			int reviewerId = 1;
+			var reviewerUpdate = A.Fake<ReviewerDto>();
+			reviewerUpdate.Id = reviewerId;
+			var reviewer = A.Fake<Reviewer>();
+			A.CallTo(() => _reviewerRepository.ReviewerExists(reviewerId)).Returns(true);
+			A.CallTo(() => _mapper.Map<Reviewer>(reviewerUpdate)).Returns(reviewer);
+			A.CallTo(() => _reviewerRepository.UpdateReviewer(reviewer)).Returns(true);
+			var controller = new ReviewerController(_reviewerRepository, _mapper, _reviewRepository);
+
+			//Act
+			var result = controller.UpdateReviewer(reviewerId, reviewerUpdate);
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(OkObjectResult));
+		}
+
+		[Fact]
+		public void ReviewerController_DeleteReviewer_ReturnOk()
+		{
+			//Arrange
+			int reviewerId = 1;
+			var reviewsDelete = A.Fake<List<Review>>();
+			var reviewerDelete = A.Fake<Reviewer>();
+			A.CallTo(() => _reviewerRepository.ReviewerExists(reviewerId)).Returns(true);
+			A.CallTo(() => _reviewerRepository.GetReviewsByReviewer(reviewerId)).Returns(reviewsDelete);
+			A.CallTo(() => _reviewerRepository.GetReviewer(reviewerId)).Returns(reviewerDelete);
+			A.CallTo(() => _reviewRepository.DeleteReviews(reviewsDelete.ToList())).Returns(true);
+			A.CallTo(() => _reviewerRepository.DeleteReviewer(reviewerDelete)).Returns(true);
+			var controller = new ReviewerController(_reviewerRepository, _mapper, _reviewRepository);
+
+			//Act
+			var result = controller.DeleteReviewer(reviewerId);
 
 			//Assert
 			result.Should().NotBeNull();

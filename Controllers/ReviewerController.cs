@@ -75,9 +75,7 @@ namespace MovieReviewApp.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			var reviewer = _reviewerRepository.GetReviewers()
-				.Where(c => c.FirstName.Trim().ToUpper() == reviewerCreate.FirstName.TrimEnd().ToUpper())
-				.FirstOrDefault();
+			var reviewer = _reviewerRepository.GetReviewersTrimToUpper(reviewerCreate);
 
 			//Error Handling
 			if (reviewer != null)
