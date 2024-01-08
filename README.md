@@ -282,13 +282,13 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - UpdateReview() Passed!
 - DeleteReview() Passed!
 
-**ReviewerController:** [TBD]!
+**ReviewerController:** [Passed]!
 
-- GetReviewers() 
-- GetReviewer()
-- GetReviewsByAReviewer()
-- CreateReviewer() 
-- UpdateReviewer() 
-- DeleteReviewer()
+- GetReviewers() Passed!
+- GetReviewer() Passed!
+- GetReviewsByAReviewer() Passed!
+- CreateReviewer() Passed!
+- UpdateReviewer() Passed!
+- DeleteReviewer() Passed!
 
   
