@@ -15,14 +15,12 @@ namespace MovieReviewApp.Controllers
 		private readonly IReviewerRepository _reviewerRepository;
 		private readonly IReviewRepository _reviewRepository;
 		private readonly IMapper _mapper;
-		private readonly DataContext _context;
 
-		public ReviewerController(IReviewerRepository reviewerRepository, IMapper mapper,DataContext context, IReviewRepository reviewRepository)
+		public ReviewerController(IReviewerRepository reviewerRepository, IMapper mapper, IReviewRepository reviewRepository)
         {
 			_reviewerRepository = reviewerRepository;
 			_reviewRepository = reviewRepository;
 			_mapper = mapper;
-			_context = context;
 		}
 		[HttpGet]
 		[ProducesResponseType(200, Type = typeof(IEnumerable<Reviewer>))]
