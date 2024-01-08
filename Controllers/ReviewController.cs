@@ -12,15 +12,13 @@ namespace MovieReviewApp.Controllers
 	[ApiController]
 	public class ReviewController : Controller
 	{
-		private IReviewRepository _reviewRepository;
-		private IMapper _mapper;
-		private DataContext _context;
+		private readonly IReviewRepository _reviewRepository;
+		private readonly IMapper _mapper;
 
-		public ReviewController(IReviewRepository reviewRepository, IMapper mapper, IMoviesRepository moviesRepository, DataContext context)
+		public ReviewController(IReviewRepository reviewRepository, IMapper mapper)
 		{
 			_reviewRepository = reviewRepository;
 			_mapper = mapper;
-			_context = context;
 		}
 		[HttpGet]
 		[ProducesResponseType(200, Type = typeof(IEnumerable<Review>))]
