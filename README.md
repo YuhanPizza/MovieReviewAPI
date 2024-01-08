@@ -264,7 +264,7 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - UpdateCountry() Passed!
 - DeleteCountry() Passed!
 
-**DistributerController:** [TBD]!
+**DistributerController:** [Passed]!
 
 - GetDistributers() Passed!
 - GetDistributer() Passed!
@@ -273,14 +273,14 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - UpdateDistributer() Passed!
 - DeleteDistributer() Passed!
 
-**ReviewController:** [TBD]!
+**ReviewController:** [Passed]!
 
-- GetReviews() 
-- GetReview()
-- GetReviewsForAMovie()
-- CreateReview() 
-- UpdateReview() 
-- DeleteReview()
+- GetReviews() Passed!
+- GetReview() Passed!
+- GetReviewsForAMovie() Passed!
+- CreateReview() Passed!
+- UpdateReview() Passed!
+- DeleteReview() Passed!
 
 **ReviewerController:** [TBD]!
 
