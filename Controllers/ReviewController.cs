@@ -69,9 +69,7 @@ namespace MovieReviewApp.Controllers
 			{
 				return BadRequest(ModelState);
 			}
-			var review = _reviewRepository.GetReviews()
-				.Where(r => r.Title.Trim().ToUpper() == reviewCreate.Title.TrimEnd().ToUpper()) //check for duplicates
-				.FirstOrDefault();
+			var review = _reviewRepository.GetReviewsTrimToUpper(reviewCreate); //CHANGED so it can be tested
 
 			//Error Handling
 			if (review != null)

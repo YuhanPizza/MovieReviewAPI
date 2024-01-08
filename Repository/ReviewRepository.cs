@@ -1,4 +1,5 @@
 ﻿using MovieReviewApp.Data;
+using MovieReviewApp.Dto;
 using MovieReviewApp.Interfaces;
 using MovieReviewApp.Models;
 
@@ -46,6 +47,12 @@ namespace MovieReviewApp.Repository
 		public ICollection<Review> GetReviewsOfAMovie(int movieId)
 		{
 			return _context.Reviews.Where(r => r.Movie.Id == movieId).ToList();
+		}
+
+		public Review GetReviewsTrimToUpper(ReviewDto reviewDto)
+		{
+			return GetReviews().Where(r => r.Title.Trim().ToUpper() == reviewDto.Title.TrimEnd().ToUpper()) //check for duplicates
+				.FirstOrDefault();
 		}
 
 		public bool ReviewExists(int reviewId)

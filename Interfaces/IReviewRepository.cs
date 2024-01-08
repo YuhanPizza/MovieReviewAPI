@@ -1,4 +1,5 @@
-﻿using MovieReviewApp.Models;
+﻿using MovieReviewApp.Dto;
+using MovieReviewApp.Models;
 
 namespace MovieReviewApp.Interfaces
 {
@@ -10,6 +11,7 @@ namespace MovieReviewApp.Interfaces
 		bool ReviewExists(int reviewId);
 
 		bool CreateReview(int reviewerId, int movieId, Review review);
+		Review GetReviewsTrimToUpper(ReviewDto reviewDto);
 		bool UpdateReview(Review review);
 		bool DeleteReview(Review review);
 		bool DeleteReviews(List<Review> reviews);
