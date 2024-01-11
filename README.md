@@ -292,6 +292,9 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - DeleteReviewer() Passed!
 
 ## Repository (Integration Tests)
+### Quick Run Down on how I unit tested the Repositories. 
+
+[![Click to play](https://img.youtube.com/vi/panSTbjj9qs/0.jpg)](https://youtu.be/panSTbjj9qs)
 
 **MoviesRepositroy:** [Passed!]
 
