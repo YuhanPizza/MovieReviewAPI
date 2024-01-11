@@ -154,3 +154,5 @@ C:\Users\loren\Desktop\WebAPI\MovieReviewApp\MovieReviewApp.Tests\bin\Debug\net6
 C:\Users\loren\Desktop\WebAPI\MovieReviewApp\MovieReviewApp.Tests\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\loren\Desktop\WebAPI\MovieReviewApp\MovieReviewApp.Tests\bin\Debug\net6.0\MovieReviewApp.dll
 C:\Users\loren\Desktop\WebAPI\MovieReviewApp\MovieReviewApp.Tests\bin\Debug\net6.0\MovieReviewApp.pdb
+C:\Users\loren\Desktop\WebAPI\MovieReviewApp\MovieReviewApp.Tests\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\loren\Desktop\WebAPI\MovieReviewApp\MovieReviewApp.Tests\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
