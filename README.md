@@ -291,4 +291,16 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - UpdateReviewer() Passed!
 - DeleteReviewer() Passed!
 
+## Repository (Integration Tests)
+
+**MoviesRepositroy:** [Passed!]
+
+- GetMovie(title) Passed!
+- GetMovie(Id) Passed!
+- GetMovieRaiting() Passed!
+- GetMovies() Passed!
+- MovieExists() Passed!
+
+**CategoryRepository:** [TBD!]
+
   
