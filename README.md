@@ -305,6 +305,12 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - MovieExists() Passed!
 - UpdateMovie() Passed!
 
-**CategoryRepository:** [TBD!]
+**CategoryRepository:** [Passed!]
+
+- CategoryExists() Passed!
+- CreateCategory() Passed!
+- GetCategories() Passed!
+- GetCategory() Passed!
+
 
   
