@@ -1,4 +1,4 @@
-# Welcome to MovieReviewAPI! [Working on Unit Testing]🌟
+# Welcome to MovieReviewAPI! [with Unit Testing and Integration Testing]🌟
 
 ![MovieReviewAPI-Get-Post-Put-Delete](https://github.com/YuhanPizza/MovieReviewAPI/assets/107896556/96b4f05c-9a22-4165-8a0b-9490b884577d)
 
