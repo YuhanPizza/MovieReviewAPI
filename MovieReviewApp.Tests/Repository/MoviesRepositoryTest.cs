@@ -63,7 +63,7 @@ namespace MovieReviewApp.Tests.Repository
 		}
 
 		[Fact]
-		public async void MoviesRepository_Getmovie_ReturnMovie()
+		public async void MoviesRepository_GetmovieString_ReturnMovie()
 		{
 			//arrange
 			var title = "Sherlock Holmes 3";
@@ -72,6 +72,22 @@ namespace MovieReviewApp.Tests.Repository
 
 			//Act
 			var result = moviesRepository.GetMovie(title);
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(Movie));
+		}
+
+		[Fact]
+		public async void MoviesRepository_GetmovieInt_ReturnMovie()
+		{
+			//arrange
+			int movieId = 1;
+			var dbContext = await GetDatabaseContext(); //creates the database we made before
+			var moviesRepository = new MoviesRepository(dbContext); //passes that database as a new database
+
+			//Act
+			var result = moviesRepository.GetMovie(movieId);
 
 			//Assert
 			result.Should().NotBeNull();
@@ -93,6 +109,37 @@ namespace MovieReviewApp.Tests.Repository
 			result.Should().NotBe(0);
 			result.Should().BeInRange(1, 5);
 			result.Should().BeOfType(typeof(decimal));
+		}
+
+		[Fact]
+		public async void MoviesRepository_GetMovies_ReturnICollectionMovies()
+		{
+			//Arrange
+			var dbContext = await GetDatabaseContext();
+			var moviesRepository = new MoviesRepository(dbContext);
+
+			//Act
+			var result = moviesRepository.GetMovies();
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(List<Movie>));
+		}
+
+		[Fact]
+		public async void MoviesRepository_MovieExists_ReturnTrue()
+		{
+			//Arrange
+			int movieId = 1;
+			var dbContext = await GetDatabaseContext();
+			var moviesRepository = new MoviesRepository(dbContext);
+
+			//ACT
+			var result = moviesRepository.MovieExists(movieId);
+
+			//Assert
+			result.Should().NotBe(false);
+			result.Should().Be(true);
 		}
     }
 }
