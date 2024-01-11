@@ -49,5 +49,56 @@ namespace MovieReviewApp.Tests.Repository
 			result.Should().NotBe(false);
 			result.Should().Be(true);
 		}
+		[Fact]
+		public async void CategoryRepository_CreateCategory_ReturnTrue()
+		{
+			//Arrange
+			var categoryAdd = new Category()
+			{
+				Name = "Thriller"
+			};
+			var dbContext = await GetDatabaseContext();
+			var categoryRepository = new CategoryRepository(dbContext);
+
+			//Act
+			var result = categoryRepository.CreateCategory(categoryAdd);
+
+			//Assert
+			result.Should().NotBe(false);
+			result.Should().Be(true);
+		}
+
+		[Fact]
+		public async void CategoryRepository_GetCategories_ReturnICollectionCategories()
+		{
+			//Arrange
+			var dbContext = await GetDatabaseContext();
+			var categoryRepository = new CategoryRepository(dbContext);
+
+			//Act
+			var result = categoryRepository.GetCategories();
+
+			//Assert
+			result.Should().NotBeEmpty();
+			result.Should().HaveCount(10);
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(List<Category>));
+		}
+
+		[Fact]
+		public async void CategoryRepository_GetCategory_ReturnCategory()
+		{
+			//Arrange
+			int id = 1;
+			var dbContext = await GetDatabaseContext();
+			var categoryRepository = new CategoryRepository(dbContext);
+
+			//ACT
+			var result = categoryRepository.GetCategory(id);
+
+			//Assert
+			result.Should().NotBeNull();
+			result.Should().BeOfType(typeof(Category));
+		}
 	}
 }
