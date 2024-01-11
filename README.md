@@ -300,6 +300,7 @@ I use xUnit, FakeItEasy and Fluent Assertions.
 - GetMovieRaiting() Passed!
 - GetMovies() Passed!
 - MovieExists() Passed!
+- UpdateMovie() Passed!
 
 **CategoryRepository:** [TBD!]
 
